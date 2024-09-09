@@ -1,5 +1,7 @@
 # 一个win 小工具 
 ```
+油猴脚本xhr-hook.js 能够拦截http response 获取响应数据
+
 采用rust tauri 制作的 配置cookie即可使用 下载的文件在安装目录 ./download/
 支持的平台
     抖音 视频/图片/直播/主页视频 
