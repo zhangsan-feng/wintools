@@ -29,7 +29,7 @@
             .catch(e => console.error('Error downloading the video:', e));
         }
 
-        function analysis_douyin(responseData){
+        function analysis_douyin_aweme(responseData){
 
             responseData["aweme_list"].forEach(async (value,index)=>{
 
@@ -43,15 +43,17 @@
 
                 let image = data["images"]
                 let image_list = value["images"] ? data["images"] : []
-                    image_list.forEach((vb, index)=>{
+                    image_list.forEach(async (vb, index)=>{
                     let file_name = nickname + "_" + desc + "_" + aweme_id + "_" +vb.uri + ".png"
-                    downloadFile(vb.url_list[0], file_name).then()
+                    await downloadFile(vb.url_list[0], file_name)
                 })
             })
         }
+
         function analysis_douyin_video_details(responseData){}
         function analysis_douyin_video_comment(responseData){}
-
+        function analysis_hongshu_video_details(responseData){}
+        function analysis_hongshu_video_comment(responseData){}
 
         XMLHttpRequest.prototype.send = function(data) {
             let originalOnReadyStateChange = this.onreadystatechange;
@@ -64,9 +66,11 @@
 
                     if (this._url.includes("/aweme/v1/web/aweme/detail/")){}
                     if (this._url.includes("/aweme/v1/web/comment/list/")){}
+                    if (this._url.includes("/edith.xiaohongshu.com/api/sns/web/v1/feed")){
+
+                    }
 
                     if (
-                        this._url.includes("/aweme/v1/web/tab/feed/") ||
                         this._url.includes("/aweme/v1/web/aweme/post/") ||
                         this._url.includes("/aweme/v1/web/aweme/favorite/") ||
                         this._url.includes("/aweme/v1/web/aweme/listcollection/") ||
